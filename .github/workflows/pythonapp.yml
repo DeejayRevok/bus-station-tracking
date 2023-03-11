@@ -1,0 +1,21 @@
+name: Bus station tracking CI
+
+on: [push]
+
+jobs:
+  bus-station-tracking-CI:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup environment
+        run: docker-compose up -d
+      - name: Check imports
+        run: docker-compose run bus-station poetry run tox -e isort -- --check-only
+      - name: Check formatting
+        run: docker-compose run bus-station poetry run tox -e black -- --check
+      - name: Check style
+        run: docker-compose run bus-station poetry run tox -e flake8
+      - name: Check code with refurb
+        run: docker-compose run bus-station poetry run tox -e refurb
+      - name: Check typing
+        run: docker-compose run bus-station poetry run tox -e pytype
