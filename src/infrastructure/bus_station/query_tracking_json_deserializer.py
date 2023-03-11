@@ -1,0 +1,7 @@
+from bus_station.tracking_terminal.models.query_tracking import QueryTracking
+
+from infrastructure.bus_station.passenger_tracking_json_deserializer import PassengerTrackingJSONDeserializer
+
+
+class QueryTrackingJSONDeserializer(PassengerTrackingJSONDeserializer[QueryTracking]):
+    _PASSENGER_TARGET_CLASS = QueryTracking

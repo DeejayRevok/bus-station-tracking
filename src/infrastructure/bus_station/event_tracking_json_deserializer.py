@@ -1,0 +1,7 @@
+from bus_station.tracking_terminal.models.event_tracking import EventTracking
+
+from infrastructure.bus_station.passenger_tracking_json_deserializer import PassengerTrackingJSONDeserializer
+
+
+class EventTrackingJSONDeserializer(PassengerTrackingJSONDeserializer[EventTracking]):
+    _PASSENGER_TARGET_CLASS = EventTracking
