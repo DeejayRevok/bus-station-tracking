@@ -36,9 +36,7 @@ class TrackingsDataService:
     def __fetch_trackings_dataframe(self) -> DataFrame:
         with spinner("Loading data..."):
             trackings_query_response = self.__query_bus.transport(self.__build_fetch_query())
-            return self.__process_dataframe(
-                self.__response_dataframe_transformer.transform(trackings_query_response)
-            )
+            return self.__process_dataframe(self.__response_dataframe_transformer.transform(trackings_query_response))
 
     def __build_fetch_query(self) -> Query:
         self.__fetch_query_builder.with_from_execution_start(
