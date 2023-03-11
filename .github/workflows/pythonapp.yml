@@ -8,7 +8,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Setup environment
-        run: docker-compose up -d
+        run: |
+          cp .env.example .env
+          docker-compose up -d
       - name: Check imports
         run: docker-compose run bus-station poetry run tox -e isort -- --check-only
       - name: Check formatting
