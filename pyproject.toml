@@ -1,0 +1,53 @@
+[tool.poetry]
+name = "bus-station-tracking"
+version = "0.1.0"
+description = "Python bus-station tracking panel"
+readme = "README.md"
+authors = ["DeejayRevok <seryi_one@hotmail.com>"]
+
+[tool.poetry.dependencies]
+python = "~=3.10.0"
+SQLAlchemy = "1.4.29"
+pymongo = "4.0.1"
+requests = "^2.27.1"
+pypendency = "^0.1.0"
+bus-station = "5.0.0"
+confluent-kafka = "^2.0.2"
+alembic = "^1.9.4"
+python-json-logger = "^2.0.6"
+streamlit = "^1.18.1"
+pandas = "^1.5.3"
+numpy = "^1.24.2"
+streamlit-aggrid = "^0.3.3"
+
+[tool.poetry.dev-dependencies]
+black = "22.1.0"
+coverage = "5.3"
+flake8 = "3.8.4"
+pytype = "2023.3.8"
+tox = "3.20.1"
+psycopg2 = "2.9.3"
+isort = "5.10.1"
+refurb = "1.13.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 120
+target-version = ['py310']
+exclude = '''
+/(
+  | \.git
+  | \.tox
+)/
+'''
+
+[tool.isort]
+profile = "black"
+py_version=310
+line_length = 120
+
+[tool.pytype]
+disable = ["import-error"]
