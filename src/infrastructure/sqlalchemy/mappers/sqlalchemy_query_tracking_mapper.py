@@ -13,6 +13,7 @@ class SQLAlchemyQueryTrackingMapper(SQLAlchemyMapper):
             "query_tracking",
             self._db_metadata,
             Column("id", String(255), primary_key=True),
+            Column("root_passenger_id", String(255), nullable=True),
             Column("name", String(255), nullable=False),
             Column("executor_name", String(255), nullable=False),
             Column("data", JSON, nullable=False),

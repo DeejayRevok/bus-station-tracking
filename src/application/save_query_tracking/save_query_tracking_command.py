@@ -7,6 +7,7 @@ from bus_station.command_terminal.command import Command
 @dataclass(frozen=True)
 class SaveQueryTrackingCommand(Command):
     id: str
+    passenger_root_id: Optional[str]
     name: str
     executor_name: str
     data: dict

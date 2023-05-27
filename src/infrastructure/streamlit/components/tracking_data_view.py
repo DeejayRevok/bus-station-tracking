@@ -9,7 +9,9 @@ class TrackingDataView:
 
     def build(self) -> None:
         tracking_selected = self.__trackings_table.selected_row()
-        tracking_selected_data = {}
         if tracking_selected is not None:
-            tracking_selected_data = tracking_selected["data"]
-        json(tracking_selected_data)
+            tracking_selected_data = {
+                "passenger_id": tracking_selected["passenger_id"],
+                "data": tracking_selected["data"],
+            }
+            json(tracking_selected_data)

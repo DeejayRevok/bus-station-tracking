@@ -14,6 +14,7 @@ class KafkaCommandTrackingConsumer(KafkaPassengerTrackingConsumer):
     def _process_passenger_tracking(self, passenger_tracking: CommandTracking) -> None:
         save_command = SaveCommandTrackingCommand(
             id=passenger_tracking.passenger_id,
+            passenger_root_id=passenger_tracking.root_passenger_id,
             name=passenger_tracking.name,
             executor_name=passenger_tracking.executor_name,
             data=passenger_tracking.data,

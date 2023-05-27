@@ -19,6 +19,7 @@ class SaveQueryTrackingCommandHandler(CommandHandler):
             self.__validate_command_for_non_existing(command)
             query_tracking = QueryTracking(
                 id=command.id,
+                root_passenger_id=command.passenger_root_id,
                 name=command.name,
                 executor_name=command.executor_name,
                 data=command.data,
