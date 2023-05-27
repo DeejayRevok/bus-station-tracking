@@ -17,12 +17,18 @@ class TrackingsTable:
         self.__table_grid: Optional[AgGrid] = None
 
     def selected_row(self) -> Optional[dict]:
+        if self.__table_grid is None:
+            return None
+
         selected_rows = self.__table_grid["selected_rows"]
         if len(selected_rows) == 0:
             return None
         return selected_rows[0]
 
     def build(self) -> None:
+        if len(self.__trackings_dataframe) == 0:
+            return
+
         grid_options_builder = GridOptionsBuilder.from_dataframe(self.__trackings_dataframe)
         self.__configure_grid_options(grid_options_builder)
 
@@ -59,5 +65,6 @@ class TrackingsTable:
         )
         grid_options_builder.configure_column("success", cellStyle=success_style)
         grid_options_builder.configure_column("data", hide=True)
+        grid_options_builder.configure_column("passenger_id", hide=True)
         grid_options_builder.configure_selection("single", use_checkbox=False)
         return grid_options_builder

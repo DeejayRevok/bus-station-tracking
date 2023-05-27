@@ -52,12 +52,15 @@ class TrackingsDataService:
         return datetime.combine(date_instance, datetime.min.time())
 
     def __process_dataframe(self, dataframe: DataFrame) -> DataFrame:
+        dataframe["passenger_id"] = dataframe["id"]
         dataframe["execution_start"] = to_datetime(dataframe["execution_start"])
         dataframe["execution_end"] = to_datetime(dataframe["execution_end"])
         dataframe["execution_time(ms)"] = (dataframe["execution_end"] - dataframe["execution_start"]).astype(
             "timedelta64[ms]"
         )
 
-        dataframe = dataframe[["execution_start", "name", "executor_name", "execution_time(ms)", "success", "data"]]
+        dataframe = dataframe[
+            ["passenger_id", "execution_start", "name", "executor_name", "execution_time(ms)", "success", "data"]
+        ]
         dataframe = dataframe.sort_values("execution_start", ascending=False)
         return dataframe

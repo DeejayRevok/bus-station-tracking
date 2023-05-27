@@ -7,6 +7,9 @@ class TrackingsErrorChart:
         self.__trackings_dataframe = trackings_dataframe
 
     def build(self, container: DeltaGenerator) -> None:
+        if len(self.__trackings_dataframe) == 0:
+            return
+
         container.bar_chart(
             self.__get_errors_dataframe(self.__trackings_dataframe), x="execution_start", y="total_errors"
         )

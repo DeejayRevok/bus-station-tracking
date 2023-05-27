@@ -12,7 +12,10 @@ def load() -> None:
                 Argument.no_kw_argument(
                     "@infrastructure.sqlalchemy.repositories"
                     ".sqlalchemy_event_tracking_repository.SQLAlchemyEventTrackingRepository"
-                )
+                ),
+                Argument.no_kw_argument(
+                    "@bus_station.event_terminal.bus.asynchronous.threaded_event_bus.ThreadedEventBus"
+                ),
             ],
         )
     )

@@ -8,6 +8,9 @@ class TrackingsExecutionTimeBoxPlot:
         self.__trackings_dataframe = trackings_dataframe
 
     def build(self, container: DeltaGenerator) -> None:
+        if len(self.__trackings_dataframe) == 0:
+            return
+
         chart = (
             Chart(self.__trackings_dataframe, height=350)
             .mark_boxplot(extent="min-max")

@@ -19,5 +19,5 @@ ENV PYTHONPATH /app/src:/app/tests:/app
 
 RUN mkdir /var/log/bus-station-tracking
 
-RUN pip install poetry==1.1.15
+RUN pip install poetry==1.4.2
 RUN poetry install

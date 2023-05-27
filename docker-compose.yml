@@ -49,5 +49,16 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     restart: always
 
+  bus-station-tracking-neo4j:
+    image: neo4j:5.8.0
+    volumes:
+      - 'bus_station_tracking_neo4j_data:/data'
+    ports:
+      - 7474:7474
+      - 7687:7687
+    environment:
+      NEO4J_AUTH: neo4j/bus-station-tracking
+
 volumes:
   bus_station_tracking_postgres_data:
+  bus_station_tracking_neo4j_data:
