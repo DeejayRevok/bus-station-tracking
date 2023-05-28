@@ -21,3 +21,5 @@ jobs:
         run: docker-compose run bus-station-tracking poetry run tox -e refurb
       - name: Check typing
         run: docker-compose run bus-station-tracking poetry run tox -e pytype
+      - name: Run unit tests
+        run: docker-compose run bus-station-tracking poetry run tox -e unit_tests

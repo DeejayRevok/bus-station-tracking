@@ -66,7 +66,7 @@ class PassengerChainView:
         chain_graph_network.from_nx(chain_graph)
         return chain_graph_network
 
-    def __get_network_html(self, chain_graph_network: Network) -> str:
+    def __get_network_html(self, chain_graph_network: Network) -> str | bytes:
         with NamedTemporaryFile(suffix=".html") as temp_file:
             chain_graph_network.show(temp_file.name, notebook=False)
             temp_file.seek(0)

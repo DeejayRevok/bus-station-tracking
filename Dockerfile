@@ -15,7 +15,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 COPY ./ /app
 WORKDIR /app
 
-ENV PYTHONPATH /app/src:/app/tests:/app
+ENV PYTHONPATH=${PYTHONPATH}:/app/src:/app/app:/app/tests
 
 RUN mkdir /var/log/bus-station-tracking
 
