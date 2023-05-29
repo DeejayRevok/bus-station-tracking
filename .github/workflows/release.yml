@@ -12,7 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Setup environment
-        run: docker-compose up -d
+        run: |
+          cp .env.example .env
+          docker-compose up -d
       - name: Set version
         id: version
         run: echo "::set-output name=VERSION::$(docker-compose run bus-station-tracking poetry version -s)"
