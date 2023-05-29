@@ -1,0 +1,9 @@
+name: bus-station-tracking
+description: Bus station tracking helm chart
+version: 0.0.0
+appVersion: latest
+apiVersion: v1
+keywords:
+  - bus-station-tracking
+sources:
+home:

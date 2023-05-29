@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: bus-station-tracking-postgres
+  name: bus-station-tracking-postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: bus-station-tracking-postgres
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: bus-station-tracking-postgres
+    spec:
+      containers:
+      - envFrom:
+          - configMapRef:
+              name: bus-station-tracking-configmap
+        image: postgres:15.0
+        imagePullPolicy: ""
+        name: bus-station-tracking-postgres
+        ports:
+        - containerPort: 5434
+        resources: {}
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data
+          name: bus-station-tracking-postgres-data
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+      - name: bus-station-tracking-postgres-data
+        persistentVolumeClaim:
+          claimName: bus-station-tracking-postgres-data
+status: {}

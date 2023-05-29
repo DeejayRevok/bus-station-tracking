@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/name: bus-station-tracking-neo4j
+  name: bus-station-tracking-neo4j
+spec:
+  ports:
+  - name: "7687"
+    port: 7687
+    targetPort: 7687
+  selector:
+    app.kubernetes.io/name: bus-station-tracking-neo4j
+status:
+  loadBalancer: {}

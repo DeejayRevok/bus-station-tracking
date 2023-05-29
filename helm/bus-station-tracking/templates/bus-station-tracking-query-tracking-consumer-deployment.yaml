@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: bus-station-tracking-query-tracking-consumer
+  name: bus-station-tracking-query-tracking-consumer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: bus-station-tracking-query-tracking-consumer
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: bus-station-tracking-query-tracking-consumer
+    spec:
+      initContainers:
+      - name: bus-station-tracking-migrations
+        image: 'djrevok/bus-station-tracking:{{ .Chart.AppVersion }}'
+        workingDir: /app/app/migrations
+        query:
+          - alembic
+          - upgrade
+          - head
+        envFrom:
+          - configMapRef:
+              name: bus-station-tracking-configmap
+      containers:
+      - envFrom:
+          - configMapRef:
+              name: bus-station-tracking-configmap
+        image: 'djrevok/bus-station-tracking:{{ .Chart.AppVersion }}'
+        name: bus-station-tracking-query-tracking-consumer
+        resources: {}
+        query:
+          - make
+          - run_query_tracking_consumer
+      restartPolicy: Always
+      serviceAccountName: ""
+status: {}

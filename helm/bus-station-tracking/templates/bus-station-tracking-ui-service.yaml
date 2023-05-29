@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/name: bus-station-tracking-ui
+  name: bus-station-tracking-ui
+spec:
+  ports:
+  - name: "8501"
+    port: 8501
+    targetPort: 8501
+  selector:
+    app.kubernetes.io/name: bus-station-tracking-ui
+status:
+  loadBalancer: {}
