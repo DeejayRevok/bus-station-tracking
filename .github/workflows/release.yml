@@ -1,0 +1,29 @@
+name: Bus station tracking release process
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  bus-station-tracking-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup environment
+        run: docker-compose up -d
+      - name: Set version
+        id: version
+        run: echo "::set-output name=VERSION::$(docker-compose run bus-station-tracking poetry version -s)"
+      - name: Tag the docker image
+        run: docker tag bus-station-tracking:latest djrevok/bus-station-tracking:${{ steps.version.outputs.VERSION }}
+      - name: Login to docker hub
+        uses: actions-hub/docker/login@master
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USER }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Publish docker image
+        uses: actions-hub/docker@master
+        with:
+            args: push djrevok/bus-station-tracking:${{ steps.version.outputs.VERSION }}
