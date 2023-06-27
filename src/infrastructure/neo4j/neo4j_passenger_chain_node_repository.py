@@ -1,8 +1,9 @@
 from domain.passenger.chain.passenger_chain_node import PassengerChainNode
+from domain.passenger.chain.passenger_chain_node_repository import PassengerChainNodeRepository
 from infrastructure.neo4j.models.passenger import Passenger
 
 
-class Neo4jPassengerChainNodeRepository:
+class Neo4jPassengerChainNodeRepository(PassengerChainNodeRepository):
     def save(self, passenger_chain_node: PassengerChainNode) -> None:
         passenger_node = Passenger(
             passenger_id=passenger_chain_node.id, name=passenger_chain_node.name, type=passenger_chain_node.type.value

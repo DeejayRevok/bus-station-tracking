@@ -1,11 +1,9 @@
 from bus_station.event_terminal.event_consumer_registry import EventConsumerRegistry
-from pypendency.builder import container_builder
+from yandil.container import default_container
 
 
 def register() -> None:
-    registry: EventConsumerRegistry = container_builder.get(
-        "bus_station.event_terminal.event_consumer_registry.EventConsumerRegistry"
-    )
+    registry = default_container[EventConsumerRegistry]
 
     command_handler_fqns = [
         "application.save_passenger_chain_node.command_tracking_created_consumer.CommandTrackingCreatedConsumer",

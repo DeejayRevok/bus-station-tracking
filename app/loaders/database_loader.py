@@ -1,26 +1,24 @@
 import os
 
-from pypendency.builder import container_builder
 from sqlalchemy import MetaData, create_engine
 from sqlalchemy.engine import Engine
 from sqlalchemy.orm import Session, scoped_session, sessionmaker
+from yandil.container import default_container
+
+from infrastructure.sqlalchemy.mappers.sqlalchemy_command_tracking_mapper import SQLAlchemyCommandTrackingMapper
+from infrastructure.sqlalchemy.mappers.sqlalchemy_event_tracking_mapper import SQLAlchemyEventTrackingMapper
+from infrastructure.sqlalchemy.mappers.sqlalchemy_query_tracking_mapper import SQLAlchemyQueryTrackingMapper
 
 
 def load() -> None:
-    container_builder.set("sqlalchemy.MetaData", MetaData())
+    default_container.add(MetaData)
     database_engine = __create_database_engine()
-    container_builder.set("sqlalchemy.engine.Engine", database_engine)
-    container_builder.set("sqlalchemy.orm.session.Session", __create_database_session(database_engine))
+    default_container[Engine] = database_engine
+    default_container[Session] = __create_database_session(database_engine)
 
-    container_builder.get(
-        "infrastructure.sqlalchemy.mappers.sqlalchemy_command_tracking_mapper.SQLAlchemyCommandTrackingMapper"
-    ).map()
-    container_builder.get(
-        "infrastructure.sqlalchemy.mappers.sqlalchemy_event_tracking_mapper.SQLAlchemyEventTrackingMapper"
-    ).map()
-    container_builder.get(
-        "infrastructure.sqlalchemy.mappers.sqlalchemy_query_tracking_mapper.SQLAlchemyQueryTrackingMapper"
-    ).map()
+    default_container[SQLAlchemyCommandTrackingMapper].map()
+    default_container[SQLAlchemyEventTrackingMapper].map()
+    default_container[SQLAlchemyQueryTrackingMapper].map()
 
 
 def __create_database_session(database_engine: Engine) -> Session:

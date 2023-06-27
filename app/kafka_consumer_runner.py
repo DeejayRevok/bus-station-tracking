@@ -1,17 +1,21 @@
 from argparse import ArgumentParser
+from typing import Type
 
-from pypendency.builder import container_builder
+from yandil.container import default_container
 
 from app.loaders import load_app
 from domain.passenger.passenger_tracking_consumer import PassengerTrackingConsumer
+from infrastructure.kafka.kafka_command_tracking_consumer import KafkaCommandTrackingConsumer
+from infrastructure.kafka.kafka_event_tracking_consumer import KafkaEventTrackingConsumer
+from infrastructure.kafka.kafka_query_tracking_consumer import KafkaQueryTrackingConsumer
 
 
 def run() -> None:
     load_app()
     args = __load_args()
-    consumer: PassengerTrackingConsumer = container_builder.get(
-        __get_passenger_tracking_consumer_name(args["passenger_tracking"])
-    )
+    consumer: PassengerTrackingConsumer = default_container[
+        __get_passenger_tracking_consumer_class(args["passenger_tracking"])
+    ]
     consumer.consume()
 
 
@@ -28,13 +32,13 @@ def __load_args() -> dict:
     return vars(arg_solver.parse_args())
 
 
-def __get_passenger_tracking_consumer_name(passenger_tracking_type: str) -> str:
+def __get_passenger_tracking_consumer_class(passenger_tracking_type: str) -> Type:
     if passenger_tracking_type == "command_tracking":
-        return "infrastructure.kafka.kafka_command_tracking_consumer.KafkaCommandTrackingConsumer"
+        return KafkaCommandTrackingConsumer
     if passenger_tracking_type == "event_tracking":
-        return "infrastructure.kafka.kafka_event_tracking_consumer.KafkaEventTrackingConsumer"
+        return KafkaEventTrackingConsumer
     if passenger_tracking_type == "query_tracking":
-        return "infrastructure.kafka.kafka_query_tracking_consumer.KafkaQueryTrackingConsumer"
+        return KafkaQueryTrackingConsumer
     raise NotImplementedError(f"Runner for {passenger_tracking_type} not implemented")
 
 
