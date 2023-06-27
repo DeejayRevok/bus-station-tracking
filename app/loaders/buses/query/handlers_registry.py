@@ -1,11 +1,9 @@
 from bus_station.query_terminal.query_handler_registry import QueryHandlerRegistry
-from pypendency.builder import container_builder
+from yandil.container import default_container
 
 
 def register() -> None:
-    registry: QueryHandlerRegistry = container_builder.get(
-        "bus_station.query_terminal.query_handler_registry.QueryHandlerRegistry"
-    )
+    registry = default_container[QueryHandlerRegistry]
     query_handler_fqns = [
         "application.get_command_trackings.get_command_trackings_query_handler.GetCommandTrackingsQueryHandler",
         "application.get_event_trackings.get_event_trackings_query_handler.GetEventTrackingsQueryHandler",

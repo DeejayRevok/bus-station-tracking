@@ -1,8 +1,8 @@
-from logging import INFO
+from logging import INFO, Logger
 from logging import config as logging_config
 from logging import getLogger
 
-from pypendency.builder import container_builder
+from yandil.container import default_container
 
 __LOG_FILE = "/var/log/bus-station-tracking/bus-station-tracking.log"
 __LOG_FORMAT = "%(levelname)s %(asctime)s %(funcName)s %(filename)s %(lineno)d %(message)s"
@@ -28,4 +28,4 @@ def load() -> None:
     logging_config.dictConfig(__BASE_LOG_CONFIG)
     logger = getLogger("base_logger")
     logger.propagate = False
-    container_builder.set("logging.Logger", logger)
+    default_container[Logger] = logger

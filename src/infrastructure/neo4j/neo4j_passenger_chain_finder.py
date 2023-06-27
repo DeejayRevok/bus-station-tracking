@@ -1,12 +1,13 @@
 from typing import Final, Optional, Set
 
 from domain.passenger.chain.passenger_chain import PassengerChain
+from domain.passenger.chain.passenger_chain_finder import PassengerChainFinder
 from domain.passenger.chain.passenger_chain_node import PassengerChainNode
 from domain.passenger.chain.passenger_chain_node_type import PassengerChainNodeType
 from infrastructure.neo4j.models.passenger import Passenger
 
 
-class Neo4jPassengerChainFinder:
+class Neo4jPassengerChainFinder(PassengerChainFinder):
     __GRAPH_QUERY: Final[
         str
     ] = """

@@ -4,7 +4,6 @@ from typing import Optional
 from bus_station.query_terminal.bus.synchronous.sync_query_bus import SyncQueryBus
 from bus_station.query_terminal.query import Query
 from pandas import DataFrame, to_datetime
-from pypendency.builder import container_builder
 from streamlit import spinner
 
 from infrastructure.sqlalchemy.sqlalchemy_query_response_dataframe_transformer import (
@@ -15,14 +14,15 @@ from infrastructure.streamlit.services.builders.fetch_query_builder import Fetch
 
 
 class TrackingsDataService:
-    def __init__(self, fetch_query_builder: FetchQueryBuilder, trackings_prefetch_filters: TrackingsPrefetchFilters):
-        self.__query_bus: SyncQueryBus = container_builder.get(
-            "bus_station.query_terminal.bus.synchronous.sync_query_bus.SyncQueryBus"
-        )
-        self.__response_dataframe_transformer: SQLAlchemyQueryResponseDataframeTransformer = container_builder.get(
-            "infrastructure.sqlalchemy"
-            ".sqlalchemy_query_response_dataframe_transformer.SQLAlchemyQueryResponseDataframeTransformer"
-        )
+    def __init__(
+        self,
+        fetch_query_builder: FetchQueryBuilder,
+        trackings_prefetch_filters: TrackingsPrefetchFilters,
+        query_bus: Optional[SyncQueryBus] = None,
+        response_dataframe_transformer: Optional[SQLAlchemyQueryResponseDataframeTransformer] = None,
+    ):
+        self.__query_bus = query_bus
+        self.__response_dataframe_transformer = response_dataframe_transformer
         self.__fetch_query_builder = fetch_query_builder
         self.__prefetch_filters = trackings_prefetch_filters
         self.__trackings_dataframe: Optional[DataFrame] = None

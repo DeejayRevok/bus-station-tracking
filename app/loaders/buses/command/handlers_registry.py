@@ -1,11 +1,9 @@
 from bus_station.command_terminal.command_handler_registry import CommandHandlerRegistry
-from pypendency.builder import container_builder
+from yandil.container import default_container
 
 
 def register() -> None:
-    registry: CommandHandlerRegistry = container_builder.get(
-        "bus_station.command_terminal.command_handler_registry.CommandHandlerRegistry"
-    )
+    registry = default_container[CommandHandlerRegistry]
 
     command_handler_fqns = [
         "application.save_command_tracking.save_command_tracking_command_handler.SaveCommandTrackingCommandHandler",

@@ -1,7 +1,8 @@
 from typing import Final, Set
 
+from confluent_kafka import KafkaError, KafkaException
 from confluent_kafka.admin import AdminClient
-from confluent_kafka.cimpl import KafkaError, KafkaException, NewTopic
+from confluent_kafka.cimpl import NewTopic
 
 
 class KafkaTopicCreator:

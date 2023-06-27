@@ -1,9 +1,7 @@
-from bus_station.bus_stop.resolvers.pypendency_bus_stop_resolver import PypendencyBusStopResolver
-from pypendency.builder import container_builder
+from yandil.container import default_container
+
+from app.loaders.buses.yandil_bus_stop_resolver import YandilBusStopResolver
 
 
 def load() -> None:
-    container_builder.set(
-        "bus_station.bus_stop.resolvers.pypendency_bus_stop_resolver.PypendencyBusStopResolver",
-        PypendencyBusStopResolver(container_builder),
-    )
+    default_container.add(YandilBusStopResolver)

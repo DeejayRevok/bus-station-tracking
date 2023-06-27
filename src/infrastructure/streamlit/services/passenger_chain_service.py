@@ -1,7 +1,6 @@
 from typing import Optional
 
 from bus_station.query_terminal.bus.synchronous.sync_query_bus import SyncQueryBus
-from pypendency.builder import container_builder
 
 from application.get_passenger_chain.get_passenger_chain_query import GetPassengerChainQuery
 from domain.passenger.chain.passenger_chain import PassengerChain
@@ -9,10 +8,8 @@ from infrastructure.streamlit.components.passenger_chain_filter import Passenger
 
 
 class PassengerChainService:
-    def __init__(self, passenger_chain_filter: PassengerChainFilter):
-        self.__query_bus: SyncQueryBus = container_builder.get(
-            "bus_station.query_terminal.bus.synchronous.sync_query_bus.SyncQueryBus"
-        )
+    def __init__(self, passenger_chain_filter: PassengerChainFilter, query_bus: Optional[SyncQueryBus] = None):
+        self.__query_bus = query_bus
         self.__passenger_chain_filter = passenger_chain_filter
 
     def get_passenger_chain(self) -> Optional[PassengerChain]:

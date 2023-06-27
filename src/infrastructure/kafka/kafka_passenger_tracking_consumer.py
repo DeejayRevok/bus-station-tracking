@@ -4,7 +4,7 @@ from typing import Optional
 
 from bus_station.command_terminal.bus.command_bus import CommandBus
 from bus_station.tracking_terminal.models.passenger_tracking import PassengerTracking
-from confluent_kafka.cimpl import Message, Producer
+from confluent_kafka import Message, Producer
 
 from infrastructure.bus_station.passenger_tracking_json_deserializer import PassengerTrackingJSONDeserializer
 from infrastructure.kafka.kafka_consumer_creator import KafkaConsumerCreator
