@@ -192,18 +192,18 @@ files = [
 
 [[package]]
 name = "bus-station"
-version = "6.0.1"
+version = "6.1.0"
 description = "A python bus station"
 category = "main"
 optional = false
 python-versions = ">=3.10.0,<3.11.0"
 files = [
-    {file = "bus_station-6.0.1-py3-none-any.whl", hash = "sha256:3ea4940f82324f6319bddd17dc50d32d8cbe7a0872bc7de50737202903ab1a65"},
-    {file = "bus_station-6.0.1.tar.gz", hash = "sha256:705cd0ec14c9ca0e45a96f0e3f6f5f4ae53e970a48cb178c56098c81c29e67c5"},
+    {file = "bus_station-6.1.0-py3-none-any.whl", hash = "sha256:03f8b86b015df706775195742ff09d7f801eb36d14ef2c0d6171813eb532311c"},
+    {file = "bus_station-6.1.0.tar.gz", hash = "sha256:f46f8584b08df24e942ea98c4e767c07eb56e20431c2ab0505d5c4ba15cbd00c"},
 ]
 
 [package.dependencies]
-confluent-kafka = ">=2.0.2,<3.0.0"
+confluent-kafka = ">=2.1.1,<3.0.0"
 freezegun = ">=1.2.2,<2.0.0"
 jsonrpcclient = ">=4.0.2,<5.0.0"
 jsonrpcserver = ">=5.0.6,<6.0.0"
@@ -212,6 +212,7 @@ pypendency = ">=0.1.0,<0.2.0"
 redis = "4.4.4"
 requests = ">=2.27.1,<3.0.0"
 rpyc = "5.0.1"
+yandil = ">=0.2.4,<0.3.0"
 
 [[package]]
 name = "cachetools"
@@ -2510,14 +2511,14 @@ test = ["argcomplete (>=2.0)", "pre-commit", "pytest", "pytest-mock"]
 
 [[package]]
 name = "typing-extensions"
-version = "4.7.0"
+version = "4.7.1"
 description = "Backported and Experimental Type Hints for Python 3.7+"
 category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "typing_extensions-4.7.0-py3-none-any.whl", hash = "sha256:5d8c9dac95c27d20df12fb1d97b9793ab8b2af8a3a525e68c80e21060c161771"},
-    {file = "typing_extensions-4.7.0.tar.gz", hash = "sha256:935ccf31549830cda708b42289d44b6f74084d616a00be651601a4f968e77c82"},
+    {file = "typing_extensions-4.7.1-py3-none-any.whl", hash = "sha256:440d5dd3af93b060174bf433bccd69b0babc3b15b1a8dca43789fd7f61514b36"},
+    {file = "typing_extensions-4.7.1.tar.gz", hash = "sha256:b75ddc264f0ba5615db7ba217daeb99701ad295353c45f9e95963337ceeeffb2"},
 ]
 
 [[package]]
@@ -2718,4 +2719,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = "~=3.10.0"
-content-hash = "617e50645f7d9103706d87ec5657fd72792448a9b4eb9990f9f2670ed4fb843d"
+content-hash = "0c3a0cc61c4cc0ee800fcb44a864bbdfbc81ef6d005fb367c16af3d82938c89c"
