@@ -13,4 +13,4 @@ def register() -> None:
         EventTrackingCreatedConsumer,
     ]
     for event_consumer in event_consumers:
-        registry.register(event_consumer)
+        registry.register(default_container[event_consumer])
