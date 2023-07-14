@@ -3,8 +3,9 @@ from yandil.container import default_container
 
 from application.save_command_tracking.save_command_tracking_command_handler import SaveCommandTrackingCommandHandler
 from application.save_event_tracking.save_event_tracking_command_handler import SaveEventTrackingCommandHandler
-from application.save_passenger_chain_node.save_passenger_chain_node_command_handler import \
-    SavePassengerChainNodeCommandHandler
+from application.save_passenger_chain_node.save_passenger_chain_node_command_handler import (
+    SavePassengerChainNodeCommandHandler,
+)
 from application.save_query_tracking.save_query_tracking_command_handler import SaveQueryTrackingCommandHandler
 
 
